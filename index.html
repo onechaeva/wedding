@@ -682,7 +682,6 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-pre">приглашают вас на свадьбу</p>
     <h1 class="hero-names">
       Ольга
       <span class="hero-amp">&</span>
@@ -690,7 +689,7 @@
     </h1>
     <div class="hero-divider"></div>
     <div class="hero-date">04 · 07 · 2026</div>
-    <div class="hero-place">The Birch · Подмосковье</div>
+    <div class="hero-place"><a href="https://yandex.ru/maps/org/the_birch/201338313661/?ll=37.152057%2C56.096667&z=11" target="_blank" style="color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;">The Birch · ~60 км от Москвы</a></div>
     <div class="hero-cta">
       <a href="#form" class="btn">Подтвердить присутствие</a>
     </div>
@@ -720,11 +719,7 @@
       <span class="timer-num" id="t-min">—</span>
       <span class="timer-word">минут</span>
     </div>
-    <div class="timer-sep">·</div>
-    <div class="timer-unit">
-      <span class="timer-num" id="t-sec">—</span>
-      <span class="timer-word">секунд</span>
-    </div>
+
   </div>
 </section>
 
@@ -733,7 +728,6 @@
   <div class="program-inner">
     <div class="reveal">
       <p class="section-tag">Программа дня</p>
-      <h2 class="section-title">Как пройдёт наш день</h2>
       <div class="thin-rule"></div>
     </div>
 
@@ -745,6 +739,7 @@
           <span class="tl-time">11:00</span>
           <span class="tl-event">Роспись</span>
           <p class="tl-desc">Кутузовский дворец<br>бракосочетания</p>
+          <p class="tl-desc" style="color:#c9a090;margin-top:6px;">Просьба быть на месте в 10:40</p>
           <a class="tl-map" href="https://yandex.ru/maps/-/CPgOE2jN" target="_blank">→ На карте</a>
         </div>
         <div class="tl-dot"></div>
@@ -757,7 +752,8 @@
         <div class="tl-right">
           <span class="tl-time">12:30</span>
           <span class="tl-event">Сбор на автобус</span>
-          <p class="tl-desc">Отправляемся вместе<br>в The Birch</p>
+          <p class="tl-desc">Отправляемся вместе в The Birch</p>
+          <p class="tl-desc" style="margin-top:8px;">Или такси — <br>~3 000–4 000 ₽, около 1 часа в пути</p>
         </div>
       </div>
 
@@ -787,12 +783,7 @@
       Загородное пространство среди леса — живая природа, гирлянды в кронах деревьев и атмосфера сказки для нашего праздника.
     </p>
     <a href="https://yandex.ru/maps/org/the_birch/201338313661/?ll=37.152057%2C56.096667&z=11" target="_blank" class="btn">Как доехать →</a>
-    <div style="margin-top:36px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.15); text-align:center;">
-      <p style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(200,215,180,0.6); margin-bottom:10px; font-family:'Montserrat',sans-serif;">Организационные вопросы</p>
-      <p style="font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:8px; font-family:'Montserrat',sans-serif; font-weight:300;">Парковка, маршрут, логистика</p>
-      <a href="tel:+79774135400" style="font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; color:#fff; text-decoration:none; letter-spacing:1px;">+7 977 413 54 00</a>
-      <p style="font-size:12px; color:rgba(200,215,180,0.7); margin-top:4px; font-family:'Montserrat',sans-serif; letter-spacing:2px;">Виктория</p>
-    </div>
+
   </div>
 </section>
 
@@ -953,6 +944,16 @@
   </div>
 </section>
 
+
+<!-- ── ОРГАНИЗАТОР ───────────────────────────────────────── -->
+<section style="background:var(--milk); padding:64px 24px; text-align:center;">
+  <p style="font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; font-family:'Montserrat',sans-serif;">Организационные вопросы</p>
+  <p style="font-family:'Cormorant Garamond',serif; font-size:28px; font-style:italic; color:var(--text); margin-bottom:8px;">Парковка, маршрут, логистика</p>
+  <p style="font-size:13px; color:var(--muted); margin-bottom:24px; line-height:1.7;">Если возникнут вопросы по дороге или на месте — звоните Виктории</p>
+  <a href="tel:+79774135400" style="display:inline-block; font-family:'Cormorant Garamond',serif; font-size:36px; font-style:italic; color:var(--rose-dk); text-decoration:none; letter-spacing:1px;">+7 977 413 54 00</a>
+  <p style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--muted); margin-top:8px; font-family:'Montserrat',sans-serif;">Виктория</p>
+</section>
+
 <!-- ── FOOTER ─────────────────────────────────────────────── -->
 <footer>
   <div class="footer-names">Ольга & Николай</div>
@@ -976,7 +977,7 @@ function updateTimer() {
   document.getElementById('t-days').textContent  = String(d).padStart(2,'0');
   document.getElementById('t-hours').textContent = String(h).padStart(2,'0');
   document.getElementById('t-min').textContent   = String(m).padStart(2,'0');
-  document.getElementById('t-sec').textContent   = String(s).padStart(2,'0');
+  // секунды скрыты
 }
 updateTimer();
 setInterval(updateTimer, 1000);
