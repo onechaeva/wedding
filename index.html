@@ -981,44 +981,38 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ── ФОРМА → GOOGLE SHEETS ─────────────────────────────────
-// ЗАМЕНИТЕ ЭТУ СТРОКУ на URL вашего Apps Script после публикации:
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzR_-FKex1BtrDCEjm0WQUehi3Kan6AbN2Ldk2nHsLIMFWPsW-lmRBGkyTbkgQK_1vLA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGtIqNY5wgEJIIuyzdXLaJd9qE1vuTVHF97nsvykRStj2raiod6LdKb_tzBzCO_O-bdg/exec';
 
-document.getElementById('guestForm').addEventListener('submit', async function(e) {
+document.getElementById('guestForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const data = new FormData(this);
-
-  // Собираем чекбоксы в строку
-  const drinks = [...this.querySelectorAll('input[name="drinks"]:checked')].map(i => i.value).join(', ');
+  const form = this;
+  const drinks = [...form.querySelectorAll('input[name="drinks"]:checked')].map(i => i.value).join(', ');
 
   const payload = {
-    name:      data.get('name'),
-    attend:    data.get('attend'),
+    name:      form.querySelector('[name="name"]').value,
+    attend:    (form.querySelector('input[name="attend"]:checked') || {}).value || '—',
     drinks:    drinks || '—',
-    main:      data.get('main'),
-    transport: data.get('transport'),
-    music:     data.get('music') || '—',
-    comment:   data.get('comment') || '—',
+    main:      (form.querySelector('input[name="main"]:checked') || {}).value || '—',
+    transport: (form.querySelector('input[name="transport"]:checked') || {}).value || '—',
+    music:     form.querySelector('[name="music"]').value || '—',
+    comment:   form.querySelector('[name="comment"]').value || '—',
   };
 
-  const btn = this.querySelector('.submit-btn');
+  const btn = form.querySelector('.submit-btn');
   btn.textContent = 'Отправляем…';
   btn.disabled = true;
 
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+  const url = SCRIPT_URL + '?' + Object.entries(payload)
+    .map(([k,v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+    .join('&');
+
+  const img = new Image();
+  img.src = url;
+
+  setTimeout(function() {
     document.getElementById('guestForm').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
-  } catch(err) {
-    btn.textContent = 'Попробуйте ещё раз';
-    btn.disabled = false;
-    alert('Ошибка отправки. Попробуйте позже.');
-  }
+  }, 1500);
 });
 </script>
 </body>
